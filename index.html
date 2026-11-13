@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#551e7a"><meta name="description" content="Join the Totally Awesome Cheer Parent Association (TACPA).">
+<title>Join TACPA | Totally Awesome Cheer Parent Association</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#251733;background:#fcf9fe}
+*{box-sizing:border-box}body{margin:0;line-height:1.5}.top{background:#542078;color:white;padding:18px 24px}.top-inner{max-width:1040px;margin:auto;display:flex;align-items:center;gap:12px}.mark{background:white;color:#542078;border-radius:11px;font-weight:900;padding:6px 12px;letter-spacing:.03em}.top span{font-size:.9rem;opacity:.93}
+.hero{background:linear-gradient(125deg,#542078 0%,#7e3a9c 63%,#ac63b6 100%);color:#fff;padding:60px 24px 80px}.hero-inner{max-width:1040px;margin:auto}.eyebrow{text-transform:uppercase;font-weight:700;letter-spacing:.15em;font-size:.76rem}.hero h1{font-size:clamp(2.3rem,6vw,4.4rem);line-height:1.08;margin:16px 0}.hero p{max-width:570px;font-size:1.12rem;color:#f8eefa}.content{max-width:1040px;margin:-45px auto 0;position:relative;padding:0 24px 70px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.7fr);gap:25px}.panel{background:white;border:1px solid #e9dfee;border-radius:20px;padding:clamp(22px,4vw,40px);box-shadow:0 12px 36px #381b5214}h2{font-size:1.5rem;margin:0 0 7px}h3{margin-top:0}.muted{color:#695974}form{margin-top:25px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}label{font-size:.91rem;font-weight:650}input{width:100%;border:1px solid #bfb1c8;border-radius:9px;padding:13px;font:inherit;background:white;color:#24172b}input:focus{outline:3px solid #bb83d455;border-color:#743594}.hint{font-size:.79rem;color:#6a5b71}.consent{display:flex;align-items:flex-start;gap:10px;margin:23px 0 18px}.consent input{width:18px;height:18px;margin-top:3px;accent-color:#542078;flex:none}.consent label{font-weight:450}.button{background:#542078;color:white;border:0;border-radius:10px;cursor:pointer;padding:14px 24px;font:inherit;font-weight:750;width:100%}.button:hover{background:#6d2c96}.button:disabled{opacity:.65;cursor:wait}.status{margin-top:15px;padding:12px;border-radius:9px;display:none}.status.success{display:block;background:#e8f5ed;color:#155d37}.status.error{display:block;background:#fff0f0;color:#8b2020}.side{padding-top:24px}.side h3{color:#512474}.side p{color:#5b4d64}.side ul{padding-left:20px;color:#5b4d64}.side li{margin:12px 0}.footer{border-top:1px solid #eadfec;padding:30px 24px;text-align:center;color:#776a7d;font-size:.86rem}.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media(max-width:760px){.content{grid-template-columns:1fr}.side{padding-top:0}.hero{padding-top:45px}.fields{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="top"><div class="top-inner"><div class="mark">TACPA</div><span>Totally Awesome Cheer Parent Association</span></div></header>
+<section class="hero"><div class="hero-inner"><div class="eyebrow">Get involved • Make a difference</div><h1>Join the TACPA family.</h1><p>Connect with fellow cheer families, support our athletes, and be part of a parent community that helps make every season awesome.</p></div></section>
+<main class="content"><section class="panel" aria-labelledby="join-title"><h2 id="join-title">Parent Association Interest Form</h2><p class="muted">Tell us a little about your family. A TACPA representative can follow up with next steps.</p>
+<form id="signup">
+<div class="fields">
+<div class="field"><label for="parent_name">Parent / guardian full name *</label><input id="parent_name" name="parent_name" required minlength="2" maxlength="150" autocomplete="name"></div>
+<div class="field"><label for="email">Email address *</label><input id="email" name="email" required type="email" maxlength="254" autocomplete="email"></div>
+<div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" maxlength="30" autocomplete="tel"></div>
+<div class="field"><label for="athlete_name">Athlete's first name *</label><input id="athlete_name" name="athlete_name" required minlength="2" maxlength="150"><span class="hint">First name only is fine.</span></div>
+<div class="field full"><label for="team_name">Cheer team (optional)</label><input id="team_name" name="team_name" maxlength="100" placeholder="Leave blank if not yet assigned"></div>
+</div>
+<div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+<div class="consent"><input id="consent" type="checkbox" required><label for="consent">I agree that TACPA may use the information I provide to contact me about parent association participation. My information will be shared only with authorized TACPA organizers for association purposes. *</label></div>
+<button class="button" id="submit" type="submit">Submit my interest</button>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<p class="hint">We only request basic parent contact details and your athlete's first name. Please do not enter medical or other sensitive information.</p>
+</form></section>
+<aside class="side"><h3>Better together</h3><p>TACPA brings cheer families together to support the community behind the athletes.</p><ul><li>Stay connected with other parents</li><li>Learn about volunteer opportunities</li><li>Support events and team activities</li><li>Help make a positive impact</li></ul><p class="hint">Submitting this form expresses interest and is not confirmation of membership or any payment obligation.</p></aside></main>
+<footer class="footer">© <span id="year"></span> Totally Awesome Cheer Parent Association • TACPA</footer>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+const form=document.getElementById("signup"),button=document.getElementById("submit"),statusBox=document.getElementById("status");
+form.addEventListener("submit",async(e)=>{
+ e.preventDefault();
+ if(!form.reportValidity())return;
+ button.disabled=true;button.textContent="Submitting…";statusBox.className="status";statusBox.textContent="";
+ const data=Object.fromEntries(new FormData(form).entries());
+ data.consent_to_contact=document.getElementById("consent").checked;
+ try{
+  const response=await fetch("https://hdgnvgdpyqxnuvubnvlu.supabase.co/functions/v1/tacpa-signup",{
+   method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)
+  });
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok||!result.success)throw new Error(result.error||"Please try again.");
+  form.reset();statusBox.className="status success";statusBox.textContent="Thank you! Your interest form was submitted successfully. TACPA can follow up with you soon.";
+ }catch(error){statusBox.className="status error";statusBox.textContent="We couldn't submit your form. "+(error instanceof Error?error.message:"Please try again.");}
+ finally{button.disabled=false;button.textContent="Submit my interest";}
+});
+</script></body></html>
