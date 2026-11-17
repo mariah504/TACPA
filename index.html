@@ -42,8 +42,9 @@ form.addEventListener("submit",async(e)=>{
    method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)
   });
   const result=await response.json().catch(()=>({}));
-  if(!response.ok||!result.success)throw new Error(result.error||"Please try again.");
-  form.reset();statusBox.className="status success";statusBox.textContent="Thank you! Your interest form was submitted successfully. TACPA can follow up with you soon.";
+  if(!response.ok||!result.success||!result.registration_id)throw new Error(result.error||"The registration could not be confirmed. Please try again.");
+  form.reset();statusBox.className="status success";
+  statusBox.textContent=(result.already_registered?"You already submitted a recent registration.":"Thank you! Your registration was saved successfully.")+" Confirmation: "+result.registration_id+". Keep this number for your records.";
  }catch(error){statusBox.className="status error";statusBox.textContent="We couldn't submit your form. "+(error instanceof Error?error.message:"Please try again.");}
  finally{button.disabled=false;button.textContent="Submit my interest";}
 });
