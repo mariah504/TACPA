@@ -1,0 +1,22 @@
+name: TACPA signup end-to-end smoke test
+on:
+  push:
+    paths:
+      - '.github/workflows/tacpa-signup-smoke.yml'
+  workflow_dispatch:
+jobs:
+  verify-registration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify Edge Function stores a registration
+        shell: bash
+        run: |
+          set -euo pipefail
+          DATA='{"parent_name":"TACPA Test Parent","email":"tacpa-ci-smoke-20261116@example.invalid","phone":"5551234567","athlete_name":"Test Athlete","team_name":"Integration Test","consent_to_contact":true}'
+          STATUS=$(curl --fail-with-body --silent --show-error --max-time 25 -o /tmp/tacpa-response.json -w '%{http_code}' \
+            -X POST 'https://hdgnvgdpyqxnuvubnvlu.supabase.co/functions/v1/tacpa-signup' \
+            -H 'Origin: https://jointacpa.com' \
+            -H 'Content-Type: application/json' \
+            --data "$DATA")
+          node -e 'const f=require("fs"); const r=JSON.parse(f.readFileSync("/tmp/tacpa-response.json","utf8")); if (!r.success || !r.registration_id || !["200","201"].includes(process.argv[1])) { console.error("Signup failed:",JSON.stringify(r)); process.exit(1); } console.log("PASS: endpoint returned confirmed registration ID:",r.registration_id)' "$STATUS"
